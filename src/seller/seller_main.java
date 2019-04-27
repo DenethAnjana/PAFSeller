@@ -33,6 +33,8 @@ import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -176,6 +178,9 @@ public class seller_main extends javax.swing.JFrame {
            
        }
     }
+    
+    
+   
     
     public void ShowItem(int index)
     {
@@ -889,14 +894,7 @@ public class seller_main extends javax.swing.JFrame {
         System.out.println("Price => "+ txt_price.getText());
         System.out.println("Image => "+ ImgPath);
         
-        
-    
-    
-    
-    
-    
-    
-        
+  
     }//GEN-LAST:event_btn_insertActionPerformed
 
     private void txt_addDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_addDateActionPerformed
@@ -1069,8 +1067,17 @@ public class seller_main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_tblPrintActionPerformed
 
+     public void filter(String queary){
+          // TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+           //JTable_products.setRowSorter(tr);
+           
+           //tr.setRowFilter(RowFilter.regexFilter(queary));
+       }
+    
     private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
+       // String queary = txt_search.getText().toLowerCase();
         
+        //filter(queary);
     }//GEN-LAST:event_txt_searchKeyReleased
 
     /**
