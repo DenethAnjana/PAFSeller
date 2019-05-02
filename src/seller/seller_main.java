@@ -79,13 +79,9 @@ public class seller_main extends javax.swing.JFrame {
     
     public boolean checkInputs(){
         
-              if(  txt_name.getText() == null
-                || txt_sId.getText() == null
-                || txt_itemCode.getText() == null
-                || txt_price.getText() == null
-                || txt_addDate.getText() == null
-                      
-                ){
+              if(  txt_name.getText() == null && txt_sId.getText() == null && txt_itemCode.getText() == null && txt_price.getText() == null
+                && txt_addDate.getText() == null)
+              {
             return false;
             
         }else{
@@ -98,10 +94,8 @@ public class seller_main extends javax.swing.JFrame {
                 }  
               }
     }
-    
-    
-    //Resize image
-    
+ 
+  
     public ImageIcon ResizeImage(String imagePath, byte[] pic)
     {
         ImageIcon myImage = null;
@@ -119,7 +113,10 @@ public class seller_main extends javax.swing.JFrame {
     }
     
     
-    //Display Data in JTable
+    
+    
+    //
+    ////////////////////////////////////////////////////////////Display Data in JTable
     
         // 1 - Fill Array List with the Data
     
@@ -419,7 +416,9 @@ public class seller_main extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Seller ID  : ");
 
+        txt_sId.setEditable(false);
         txt_sId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_sId.setEnabled(false);
         txt_sId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_sIdActionPerformed(evt);
@@ -654,6 +653,11 @@ public class seller_main extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jButton1.setText("SUBMIT YOUR INFO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -893,6 +897,13 @@ public class seller_main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_updateActionPerformed
 
+    
+    
+    
+    
+    
+    
+    
     private void choose_imageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choose_imageActionPerformed
         
         JFileChooser file = new JFileChooser();
@@ -914,9 +925,57 @@ public class seller_main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_choose_imageActionPerformed
 
+    
+    
+    
+    
+    
+    
+    
+    
     private void btn_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertActionPerformed
         
-        if(checkInputs() && ImgPath != null){
+        
+        
+        String sId = txt_sId.getText();
+        String ic = txt_itemCode.getText();
+        String name = txt_name.getText();
+        String price = txt_price.getText();
+        String date = txt_addDate.getText();
+        String qty = txt_qty.getText();
+            
+        if(sId.equals("")&& ic.equals("")&&name.equals("")&&price.equals("")&&date.equals("")&&qty.equals("") && ImgPath==null){
+                JOptionPane.showMessageDialog(null, "All the fields are empty");
+            }
+        else  if(sId.equals("")){
+                JOptionPane.showMessageDialog(null, "Please Select your ID");
+            }
+             else if((ic.equals("")))
+              
+              {
+                JOptionPane.showMessageDialog(null, "Please Enter the Item Code");
+              } 
+              else if((name.equals("")))
+              
+              {
+                JOptionPane.showMessageDialog(null, "Please provide Your Item Name");
+              } 
+               
+             else if(price.equals("")){
+                    JOptionPane.showMessageDialog(null, "Enter the Item Price");
+            }
+            else if(date.equals("")){
+                JOptionPane.showMessageDialog(null, "Please Enter the Date");
+            }
+            else if(qty.equals("")){
+                JOptionPane.showMessageDialog(null, "Please Enter the Quantity");
+            }
+             else if(ImgPath == null){
+                JOptionPane.showMessageDialog(null, "Please provide Item Image");
+            }
+        
+               
+            else{
              
             try {
                 Connection con = getConnection();
@@ -937,14 +996,21 @@ public class seller_main extends javax.swing.JFrame {
                 
                 JOptionPane.showMessageDialog(null, "Data Inserted");
                 
+         txt_id.setText("");
+        txt_sId.setText("");
+        txt_itemCode.setText("");
+        txt_name.setText("");
+        txt_price.setText("");
+        txt_addDate.setText("");
+        txt_qty.setText("");
+        txt_print.setText("");
+                
                 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } 
             
             
-        }else{
-            JOptionPane.showMessageDialog(null, "Fields Are Empty");
         }
         
         System.out.println("Name => "+ txt_name.getText());
@@ -1010,6 +1076,8 @@ public class seller_main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_resetActionPerformed
 
+    
+    
     private void btn_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nextActionPerformed
         try {
             pos++;
@@ -1028,6 +1096,9 @@ public class seller_main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_nextActionPerformed
 
+    
+    
+    
     private void btn_lastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lastActionPerformed
         try {
             pos = getProductList().size()-1;
@@ -1037,6 +1108,8 @@ public class seller_main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_lastActionPerformed
 
+    
+    
     private void btn_prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prevActionPerformed
         
         pos--;
@@ -1081,6 +1154,10 @@ public class seller_main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    
+    
+    
     private void btn_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_printActionPerformed
         try {
             txt_print.print();
@@ -1090,6 +1167,10 @@ public class seller_main extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btn_printActionPerformed
 
+    
+    
+    
+    
     private void btn_tblPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tblPrintActionPerformed
         String filePath = "C:\\Users\\Deneth A Perera\\Documents\\NetBeansProjects\\Seller\\src\\reports\\txtfile.txt";
         File file = new File(filePath);
@@ -1146,6 +1227,18 @@ public class seller_main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_searchActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        try {
+            SellerForm SellerForm = new SellerForm();
+            SellerForm.setVisible(true);
+            
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(seller_main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1184,6 +1277,13 @@ public class seller_main extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
+    
+    
+    
+    
     
   public void Recepit_print(){
       
