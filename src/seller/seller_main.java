@@ -206,7 +206,6 @@ public class seller_main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateChooserDialog1 = new datechooser.beans.DateChooserDialog();
         jPanel1 = new javax.swing.JPanel();
         btn_insert = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
@@ -991,10 +990,11 @@ public class seller_main extends javax.swing.JFrame {
                 InputStream img = new FileInputStream(new File(ImgPath));
                 ps.setBlob(7, img);
                 ps.executeUpdate();
+                 JOptionPane.showMessageDialog(null, "Data Inserted");
                 show_Products_In_JTable();
                 Recepit_print();
                 
-                JOptionPane.showMessageDialog(null, "Data Inserted");
+               
                 
          txt_id.setText("");
         txt_sId.setText("");
@@ -1003,7 +1003,7 @@ public class seller_main extends javax.swing.JFrame {
         txt_price.setText("");
         txt_addDate.setText("");
         txt_qty.setText("");
-        txt_print.setText("");
+        
                 
                 
             } catch (Exception ex) {
@@ -1411,7 +1411,6 @@ public class seller_main extends javax.swing.JFrame {
     private javax.swing.JButton btn_update;
     private javax.swing.JButton choose_image;
     private javax.swing.JComboBox<String> combobox;
-    private datechooser.beans.DateChooserDialog dateChooserDialog1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
@@ -1452,4 +1451,4 @@ public class seller_main extends javax.swing.JFrame {
 
 //Set File Paths
 //Images
-//Reports txt file
+//Reports txt filee
